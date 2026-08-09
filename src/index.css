@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 1s ease-in-out 0.3s both;
+  }
+
+  .typewriter-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    margin-left: 4px;
+    vertical-align: middle;
+    background-color: white;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* After Tailwind layers — wins over preflight button reset */
+button.btn-dark-fill {
+  background-color: #1a1a1d !important;
+  background-image: none !important;
+  border: none;
+  outline: none;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+button.btn-dark-fill:hover {
+  background-color: rgba(0, 0, 0, 0.58) !important;
+  background-image: none !important;
+  box-shadow:
+    inset 0 4px 14px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+button.btn-dark-fill:active {
+  transform: scale(0.97);
+}
+
+.react-pdf__Page.pdf-page {
+  display: block;
+  line-height: 0;
+}
+
+.react-pdf__Page.pdf-page canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+}
