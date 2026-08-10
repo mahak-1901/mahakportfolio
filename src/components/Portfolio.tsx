@@ -46,20 +46,15 @@ const Portfolio = () => {
     },
   ];
 
-  const photos = [
-    '/src/assets/Screenshot_2026-03-26_015108.png',
-    '/src/assets/Screenshot_2026-03-26_015138.png',
-    '/src/assets/Screenshot_2026-03-26_015226.png',
-    '/src/assets/Screenshot_2026-03-26_015319.png',
-    '/src/assets/Screenshot_2026-03-26_015432.png',
-    '/src/assets/Screenshot_2026-03-26_015453.png',
-    '/src/assets/Screenshot_2026-03-26_015531.png',
-    '/src/assets/Screenshot_2026-03-26_015603.png',
-    '/src/assets/Screenshot_2026-03-26_015719.png',
-    '/src/assets/Screenshot_2026-03-26_015746.png',
-    '/src/assets/Screenshot_2026-03-26_015820.png',
-    '/src/assets/Screenshot_2026-03-26_015854.png'
-  ];
+  const photoGlob = import.meta.glob<{ default: string }>(
+    '../assets/Screenshot_2026-03-26_*.png',
+    { eager: true }
+  );
+  
+  const photos = Object.keys(photoGlob)
+    .filter((key) => !key.includes(' copy.png'))
+    .sort()
+    .map((key) => photoGlob[key].default);
 
   const handlePrevPhoto = () => {
     if (selectedPhoto !== null) {
